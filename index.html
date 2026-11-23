@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudyShare Hub | BCA Study Materials</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #eef2f9;
+  color: #0f172a;
+  line-height: 1.6;
+}
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(12px);
+  color: #fff;
+  padding: 14px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14);
+}
+.nav-inner {
+  max-width: 1080px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.brand {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  color: #fff;
+  text-decoration: none;
+}
+.brand span { color: #38bdf8; }
+nav { display: flex; flex-wrap: wrap; gap: 20px; }
+nav a {
+  color: #e2e8f0;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: 0.2s;
+}
+nav a:hover { color: #38bdf8; }
+
+.wrap { max-width: 1080px; margin: 28px auto; padding: 0 18px; }
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1e1b4b 0%, #1d4ed8 52%, #0284c7 100%);
+  color: #fff;
+  padding: 46px 30px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 18px 36px rgba(29, 78, 216, 0.24);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  top: -70px;
+  right: -60px;
+  pointer-events: none;
+}
+.pill {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  padding: 5px 13px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.hero h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; margin-bottom: 10px; line-height: 1.2; }
+.hero p { color: #dbeafe; font-size: 15px; max-width: 620px; margin-bottom: 22px; }
+.hero-cta {
+  display: inline-block;
+  background: #fff;
+  color: #1e3a8a;
+  padding: 10px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.16);
+  transition: 0.2s;
+}
+.hero-cta:hover { transform: translateY(-2px); background: #eff6ff; }
+
+.stats-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 32px;
+}
+.stat-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px 18px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.04);
+}
+.stat-num { font-size: 22px; font-weight: 800; color: #1d4ed8; }
+.stat-lbl { font-size: 13px; color: #64748b; font-weight: 600; }
+
+.sec-title {
+  font-size: 21px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.sec-title::before {
+  content: "";
+  width: 5px;
+  height: 22px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #2563eb, #0284c7);
+}
+
+.pdf-box {
+  display: grid;
+  grid-template-columns: minmax(260px, 520px);
+  gap: 18px;
+  margin-bottom: 34px;
+}
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: #bfdbfe;
+  box-shadow: 0 14px 28px rgba(37, 99, 235, 0.1);
+}
+.badge-type {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  margin-bottom: 8px;
+}
+.card h3 { margin-bottom: 6px; font-size: 17px; color: #0f172a; }
+.card p { color: #64748b; font-size: 14px; margin-bottom: 14px; }
+
+.btn {
+  display: inline-block;
+  padding: 9px 15px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  margin-right: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.22);
+  transition: 0.2s;
+}
+.btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.btn-light {
+  background: #f8fafc;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  box-shadow: none;
+}
+.btn-light:hover { background: #e2e8f0; }
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+  background: #fff;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.04);
+}
+.controls input, .controls select {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  font-size: 14px;
+  background: #f8fafc;
+  outline: none;
+  transition: 0.2s;
+}
+.controls input:focus, .controls select:focus {
+  border-color: #2563eb;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+.controls input { flex: 1; min-width: 200px; }
+
+.sem-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.sem-btn {
+  padding: 7px 14px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #334155;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+.sem-btn:hover { border-color: #2563eb; color: #2563eb; transform: translateY(-1px); }
+.sem-btn.active {
+  background: linear-gradient(135deg, #2563eb, #0284c7);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.28);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+.code {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 800;
+  color: #1d4ed8;
+  background: #eff6ff;
+  padding: 3px 9px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+.sem-tag { font-size: 12px; font-weight: 600; color: #64748b; margin-bottom: 12px; }
+
+.about-box {
+  margin-top: 32px;
+  background: linear-gradient(135deg, #ffffff, #f8fafc);
+  border-left: 5px solid #2563eb;
+}
+
+footer {
+  text-align: center;
+  padding: 26px 16px;
+  color: #64748b;
+  font-size: 13px;
+  margin-top: 34px;
+  border-top: 1px solid #e2e8f0;
+  background: #fff;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a class="brand" href="#home">StudyShare <span>Hub</span></a>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#pdfs">Syllabus</a>
+      <a href="#subjects">Subjects</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero" id="home">
+    <div class="pill">BCA Learning Portal</div>
+    <h1>Learn Better. Achieve More.</h1>
+    <p>BCA syllabus and semester-wise subjects with PDF view and download in one clean place.</p>
+    <a class="hero-cta" href="#subjects">Browse Subjects</a>
+  </section>
+
+  <div class="stats-strip">
+    <div class="stat-card">
+      <div class="stat-num">6</div>
+      <div class="stat-lbl">BCA Semesters</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="statCount">35</div>
+      <div class="stat-lbl">Total Subjects</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">100%</div>
+      <div class="stat-lbl">Free Access</div>
+    </div>
+  </div>
+
+  <h2 class="sec-title" id="pdfs">BCA Syllabus</h2>
+  <div class="pdf-box">
+    <div class="card">
+      <div class="badge-type">SYLLABUS PDF</div>
+      <h3>BCA Syllabus</h3>
+      <p>Semester-wise BCA syllabus.</p>
+      <div class="card-actions">
+        <a class="btn" href="pdfs/bca-syllabus.pdf" target="_blank" rel="noopener">View PDF</a>
+        <a class="btn btn-light" href="pdfs/bca-syllabus.pdf" download>Download</a>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="sec-title" id="subjects">BCA Subjects (<span id="count">35</span>)</h2>
+  <div class="controls">
+    <input type="search" id="searchBox" placeholder="Search subject or code...">
+    <select id="semSelect">
+      <option value="all">All Semesters</option>
+      <option value="1">Semester 1</option>
+      <option value="2">Semester 2</option>
+      <option value="3">Semester 3</option>
+      <option value="4">Semester 4</option>
+      <option value="5">Semester 5</option>
+      <option value="6">Semester 6</option>
+    </select>
+    <button class="btn" id="resetBtn" type="button">Reset</button>
+  </div>
+
+  <div class="sem-bar" id="semBar">
+    <button class="sem-btn active" data-sem="all" type="button">All</button>
+    <button class="sem-btn" data-sem="1" type="button">Sem 1</button>
+    <button class="sem-btn" data-sem="2" type="button">Sem 2</button>
+    <button class="sem-btn" data-sem="3" type="button">Sem 3</button>
+    <button class="sem-btn" data-sem="4" type="button">Sem 4</button>
+    <button class="sem-btn" data-sem="5" type="button">Sem 5</button>
+    <button class="sem-btn" data-sem="6" type="button">Sem 6</button>
+  </div>
+
+  <div class="grid" id="subjectGrid"></div>
+
+  <section class="card about-box" id="about">
+    <h3>About StudyShare Hub</h3>
+    <p>Created by Abhishek Kumar Gupta | BCA (Session 2026-27)</p>
+    <p style="margin-bottom:0;">Technical Education &amp; Research Institute, Post-Graduate College, Ghazipur</p>
+  </section>
+</div>
+
+<footer>
+  StudyShare Hub &copy; <span id="yr">2026</span>
+</footer>
+
+<script>
+const subjects = [
+  { sem: 1, code: "BCA-101", title: "PC Software" },
+  { sem: 1, code: "BCA-102", title: "Computer Organization" },
+  { sem: 1, code: "BCA-103", title: "Programming Principles and C Language" },
+  { sem: 1, code: "BCA-104", title: "Fundamental of Information Technology" },
+  { sem: 1, code: "BCA-L11", title: "PC Software Lab" },
+  { sem: 1, code: "BCA-L12", title: "Programming in C Lab" },
+  { sem: 2, code: "BCA-201", title: "Object Modeling and C++ Programming" },
+  { sem: 2, code: "BCA-202", title: "System Analysis and Design" },
+  { sem: 2, code: "BCA-203", title: "Data and File Structure Using C and C++" },
+  { sem: 2, code: "BCA-204", title: "Discrete Mathematics" },
+  { sem: 2, code: "BCA-L21", title: "C++ Lab" },
+  { sem: 2, code: "BCA-L22", title: "Data Structure Lab" },
+  { sem: 3, code: "BCA-301", title: "Computer Based Numerical and Statistical Techniques" },
+  { sem: 3, code: "BCA-302", title: "Software Engineering" },
+  { sem: 3, code: "BCA-303", title: "Principles of Operating System" },
+  { sem: 3, code: "BCA-304", title: "Java Programming" },
+  { sem: 3, code: "BCA-L31", title: "CBNST Lab" },
+  { sem: 3, code: "BCA-L32", title: "Java Lab" },
+  { sem: 4, code: "BCA-401", title: "Design and Analysis of Algorithm" },
+  { sem: 4, code: "BCA-402", title: "Database Management System" },
+  { sem: 4, code: "BCA-403", title: "Optimization Techniques" },
+  { sem: 4, code: "BCA-404", title: "Computer Graphics and Animation" },
+  { sem: 4, code: "BCA-L41", title: "DBMS Lab" },
+  { sem: 4, code: "BCA-L42", title: "Graphics Lab" },
+  { sem: 5, code: "BCA-501", title: "Web Design" },
+  { sem: 5, code: "BCA-502", title: "Data Mining" },
+  { sem: 5, code: "BCA-503", title: ".NET Framework and C#" },
+  { sem: 5, code: "BCA-P51", title: "BCA Project - I" },
+  { sem: 5, code: "BCA-L52", title: "Web Design Lab" },
+  { sem: 5, code: "BCA-L53", title: ".NET Lab" },
+  { sem: 6, code: "BCA-601", title: "Data Communication and Computer Networks" },
+  { sem: 6, code: "BCA-602", title: "E-Commerce" },
+  { sem: 6, code: "BCA-603", title: "Multimedia System" },
+  { sem: 6, code: "BCA-P61", title: "BCA Project - II" },
+  { sem: 6, code: "BCA-P62", title: "Comprehensive Viva" }
+];
+
+const searchBox = document.getElementById("searchBox");
+const semSelect = document.getElementById("semSelect");
+const resetBtn = document.getElementById("resetBtn");
+const semBtns = document.querySelectorAll(".sem-btn");
+const subjectGrid = document.getElementById("subjectGrid");
+document.getElementById("count").textContent = subjects.length;
+document.getElementById("statCount").textContent = subjects.length;
+document.getElementById("yr").textContent = new Date().getFullYear();
+
+let activeSem = "all";
+
+function render() {
+  const q = searchBox.value.trim().toLowerCase();
+  const list = subjects.filter(s => {
+    const okSem = activeSem === "all" || String(s.sem) === activeSem;
+    const okText = s.title.toLowerCase().includes(q) || s.code.toLowerCase().includes(q);
+    return okSem && okText;
+  });
+
+  if (!list.length) {
+    subjectGrid.innerHTML = '<div class="card">No matching subjects found.</div>';
+    return;
+  }
+
+  subjectGrid.innerHTML = list.map(s => {
+    const pdfPath = `pdfs/${s.code}.pdf`;
+    return `
+      <div class="card">
+        <div class="code">${s.code}</div>
+        <h3>${s.title}</h3>
+        <div class="sem-tag">Semester ${s.sem}</div>
+        <div class="card-actions">
+          <a class="btn" href="${pdfPath}" target="_blank" rel="noopener">View PDF</a>
+          <a class="btn btn-light" href="${pdfPath}" download="${s.code}.pdf">Download</a>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function setSem(val) {
+  activeSem = val;
+  semSelect.value = val;
+  semBtns.forEach(b => b.classList.toggle("active", b.dataset.sem === val));
+  render();
+}
+
+searchBox.addEventListener("input", render);
+semSelect.addEventListener("change", () => setSem(semSelect.value));
+semBtns.forEach(b => b.addEventListener("click", () => setSem(b.dataset.sem)));
+resetBtn.addEventListener("click", () => { searchBox.value = ""; setSem("all"); });
+render();
+</script>
+</body>
+</html>
