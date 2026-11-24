@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyShare Hub | BCA Study Material & Syllabus</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --text: #162032;
+      --muted: #5b687c;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #0f766e;
+      --border: #e2e8f0;
+      --shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 16px 48px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #0d9488 100%);
+      color: #fff;
+      padding: 40px 16px 56px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 0 auto;
+      opacity: 0.95;
+      font-size: 1rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-top: -28px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 1.4rem;
+      color: var(--primary);
+    }
+
+    .stat-card span {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .syllabus-banner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--accent);
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .syllabus-banner h2 {
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+    }
+
+    .syllabus-banner p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .controls {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 1rem;
+      margin-bottom: 14px;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+
+    .sem-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .sem-btn {
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .sem-btn.active,
+    .sem-btn:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: #eff6ff;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+
+    .code {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      flex: 1;
+      min-width: 105px;
+      text-align: center;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-radius: 9px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-view {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-view:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-dl {
+      background: #f1f5f9;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-dl:hover {
+      background: #e2e8f0;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 36px 16px;
+      color: var(--muted);
+      background: var(--surface);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <h1>StudyShare Hub</h1>
+    <p>Semester-wise BCA subjects, syllabus, and PDF notes for quick viewing and downloading.</p>
+  </header>
+
+  <main class="container">
+    <section class="stats">
+      <div class="stat-card">
+        <strong>6</strong>
+        <span>Semesters</span>
+      </div>
+      <div class="stat-card">
+        <strong>35</strong>
+        <span>BCA Subjects</span>
+      </div>
+      <div class="stat-card">
+        <strong>PDFs</strong>
+        <span>Notes &amp; Syllabus</span>
+      </div>
+    </section>
+
+    <section class="syllabus-banner">
+      <div>
+        <h2>Complete BCA Syllabus</h2>
+        <p>Check semester-wise paper codes, course structure, and exam scheme.</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-view" data-pdf="pdfs/bca-syllabus.pdf" href="pdfs/bca-syllabus.pdf" target="_blank" rel="noopener">View PDF</a>
+        <a class="btn btn-dl" href="pdfs/bca-syllabus.pdf" download="bca-syllabus.pdf">Download</a>
+      </div>
+    </section>
+
+    <section class="controls">
+      <input
+        type="search"
+        id="searchInput"
+        class="search-input"
+        placeholder="Search by subject name or code (e.g., Java, BCA-304, DBMS)..."
+        aria-label="Search BCA subjects"
+      />
+      <div class="sem-filters" id="semFilters"></div>
+    </section>
+
+    <section class="grid" id="subjectGrid"></section>
+  </main>
+
+  <script>
+    const BASE_SITE_URL = "https://abhishek11211.github.io/studyshare-hub/";
+
+    const subjects = [
+      // Semester 1
+      { sem: 1, code: "BCA-101", name: "Computer Fundamentals & Office Automation" },
+      { sem: 1, code: "BCA-102", name: "Programming in C" },
+      { sem: 1, code: "BCA-103", name: "Discrete Mathematics" },
+      { sem: 1, code: "BCA-104", name: "Business Communication" },
+      { sem: 1, code: "BCA-105", name: "Principles of Management" },
+      { sem: 1, code: "BCA-106", name: "C & Office Automation Lab" },
+
+      // Semester 2
+      { sem: 2, code: "BCA-201", name: "Data Structures Using C" },
+      { sem: 2, code: "BCA-202", name: "Digital Logic & Computer Design" },
+      { sem: 2, code: "BCA-203", name: "Financial Accounting" },
+      { sem: 2, code: "BCA-204", name: "Organizational Behavior" },
+      { sem: 2, code: "BCA-205", name: "Environmental Studies" },
+      { sem: 2, code: "BCA-206", name: "Data Structures Lab" },
+
+      // Semester 3
+      { sem: 3, code: "BCA-301", name: "Operating Systems" },
+      { sem: 3, code: "BCA-302", name: "Database Management Systems (DBMS)" },
+      { sem: 3, code: "BCA-303", name: "Object Oriented Programming with C++" },
+      { sem: 3, code: "BCA-304", name: "Java Programming" },
+      { sem: 3, code: "BCA-305", name: "Computer Networks" },
+      { sem: 3, code: "BCA-306", name: "DBMS & Java Lab" },
+
+      // Semester 4
+      { sem: 4, code: "BCA-401", name: "Software Engineering" },
+      { sem: 4, code: "BCA-402", name: "Web Technologies (HTML, CSS, JS, PHP)" },
+      { sem: 4, code: "BCA-403", name: "Python Programming" },
+      { sem: 4, code: "BCA-404", name: "Computer Organization & Architecture" },
+      { sem: 4, code: "BCA-405", name: "Numerical & Statistical Methods" },
+      { sem: 4, code: "BCA-406", name: "Web & Python Lab" },
+
+      // Semester 5
+      { sem: 5, code: "BCA-501", name: "Design & Analysis of Algorithms" },
+      { sem: 5, code: "BCA-502", name: "Artificial Intelligence" },
+      { sem: 5, code: "BCA-503", name: "Unix / Linux Shell Programming" },
+      { sem: 5, code: 504, code: "BCA-504", name: "E-Commerce & Cyber Security" },
+      { sem: 5, code: "BCA-505", name: "Minor Project" },
+      { sem: 5, code: "BCA-506", name: "Linux & Algorithms Lab" },
+
+      // Semester 6
+      { sem: 6, code: "BCA-601", name: "Cloud Computing & IoT" },
+      { sem: 6, code: "BCA-602", name: "Mobile Application Development" },
+      { sem: 6, code: "BCA-603", name: "Data Mining & Warehousing" },
+      { sem: 6, code: "BCA-604", name: "Major Project" },
+      { sem: 6, code: "BCA-605", name: "Comprehensive Viva-Voce" }
+    ].map(item => ({ sem: item.sem, code: item.code, name: item.name }));
+
+    const isMobileDevice = () =>
+      /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || window.innerWidth < 768;
+
+    function getViewUrl(relativePath) {
+      if (isMobileDevice()) {
+        const fullUrl = new URL(relativePath, BASE_SITE_URL).href;
+        return `https://docs.google.com/viewer?url=${encodeURIComponent(fullUrl)}&embedded=true`;
+      }
+      return relativePath;
+    }
+
+    let activeSem = "all";
+    const semFiltersEl = document.getElementById("semFilters");
+    const gridEl = document.getElementById("subjectGrid");
+    const searchEl = document.getElementById("searchInput");
+
+    const filterOptions = [
+      { label: "All", value: "all" },
+      { label: "Sem 1", value: 1 },
+      { label: "Sem 2", value: 2 },
+      { label: "Sem 3", value: 3 },
+      { label: "Sem 4", value: 4 },
+      { label: "Sem 5", value: 5 },
+      { label: "Sem 6", value: 6 }
+    ];
+
+    function renderFilters() {
+      semFiltersEl.innerHTML = "";
+      filterOptions.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = `sem-btn ${activeSem === opt.value ? "active" : ""}`;
+        btn.textContent = opt.label;
+        btn.addEventListener("click", () => {
+          activeSem = opt.value;
+          renderFilters();
+          renderSubjects();
+        });
+        semFiltersEl.appendChild(btn);
+      });
+    }
+
+    function applyViewLinks() {
+      document.querySelectorAll("[data-pdf]").forEach(link => {
+        const pdfPath = link.getAttribute("data-pdf");
+        link.href = getViewUrl(pdfPath);
+      });
+    }
+
+    function renderSubjects() {
+      const q = searchEl.value.trim().toLowerCase();
+      const filtered = subjects.filter(sub => {
+        const matchesSem = activeSem === "all" || sub.sem === activeSem;
+        const matchesQuery =
+          !q ||
+          sub.name.toLowerCase().includes(q) ||
+          sub.code.toLowerCase().includes(q) ||
+          `sem ${sub.sem}`.includes(q);
+        return matchesSem && matchesQuery;
+      });
+
+      if (!filtered.length) {
+        gridEl.innerHTML = `<div class="empty">Koi matching subject nahi mila. Search ya semester filter change karke dekhein.</div>`;
+        return;
+      }
+
+      gridEl.innerHTML = filtered
+        .map(sub => {
+          const pdfPath = `pdfs/${sub.code}.pdf`;
+          const viewHref = getViewUrl(pdfPath);
+          return `
+            <article class="card">
+              <div>
+                <span class="badge">Semester ${sub.sem}</span>
+                <h3>${sub.name}</h3>
+                <div class="code">${sub.code}</div>
+              </div>
+              <div class="actions">
+                <a class="btn btn-view" data-pdf="${pdfPath}" href="${viewHref}" target="_blank" rel="noopener">View PDF</a>
+                <a class="btn btn-dl" href="${pdfPath}" download="${sub.code}.pdf">Download</a>
+              </div>
+            </article>
+          `;
+        })
+        .join("");
+    }
+
+    searchEl.addEventListener("input", renderSubjects);
+    window.addEventListener("resize", () => {
+      applyViewLinks();
+      renderSubjects();
+    });
+
+    renderFilters();
+    applyViewLinks();
+    renderSubjects();
+  </script>
+</body>
+</html>
